@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>日報比較ダッシュボード</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Daily Report Lab</p>
+        <h1>日報比較ダッシュボード</h1>
+        <p class="subtext">日報を保存して、日別の差分と傾向を素早く分析できます。</p>
+      </div>
+      <button class="secondary" id="export-btn" type="button">JSONエクスポート</button>
+    </header>
+
+    <main class="page-grid">
+      <section class="card">
+        <h2>日報を追加・更新</h2>
+        <form id="report-form">
+          <label>
+            日付
+            <input type="date" id="report-date" required />
+          </label>
+          <label>
+            本文
+            <textarea id="report-body" rows="8" placeholder="やったこと、気づき、明日の予定などを書きます"></textarea>
+          </label>
+          <div class="button-row">
+            <button type="submit">保存</button>
+            <button class="secondary" type="button" id="clear-btn">クリア</button>
+            <button class="danger" type="button" id="delete-btn">削除</button>
+          </div>
+        </form>
+        <p class="muted" id="save-status"></p>
+      </section>
+
+      <section class="card">
+        <h2>日報一覧</h2>
+        <div class="table" id="report-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>日別比較・分析</h2>
+        <div class="compare-controls">
+          <label>
+            比較元
+            <select id="compare-a"></select>
+          </label>
+          <label>
+            比較先
+            <select id="compare-b"></select>
+          </label>
+        </div>
+        <div class="analysis-grid">
+          <div>
+            <h3>比較元サマリー</h3>
+            <div class="stats" id="stats-a"></div>
+          </div>
+          <div>
+            <h3>比較先サマリー</h3>
+            <div class="stats" id="stats-b"></div>
+          </div>
+        </div>
+        <div class="diff-grid">
+          <div>
+            <h3>比較元だけにある行</h3>
+            <ul id="diff-a"></ul>
+          </div>
+          <div>
+            <h3>比較先だけにある行</h3>
+            <ul id="diff-b"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="page-footer">
+      <p>保存データはこのブラウザのローカルストレージにのみ保持されます。</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
